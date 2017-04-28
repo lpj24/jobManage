@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbgj.bi.mapper.BiJobMapper">
+  <resultMap id="biJobDto" type="com.hbgj.bi.model.BiJob">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="job_path" jdbcType="VARCHAR" property="jobPath" />
+    <result column="job_doc" jdbcType="VARCHAR" property="jobDoc" />
+    <result column="job_table" jdbcType="VARCHAR" property="jobTable" />
+    <result column="job_type" jdbcType="INTEGER" property="jobType" />
+    <result column="renewable" jdbcType="INTEGER" property="renewable" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  
+  	<select id="selectAllJobByType" parameterType="int" resultMap="biJobDto">
+	  	select id, job_name, job_path, job_doc, job_table, job_type, renewable 
+	  	from bi_execute_job where job_type=#{job_type}
+	</select>
+	
+	<select id="selectAllJobByTable" parameterType="string" resultMap="biJobDto">
+	  	select id, job_name, job_path, job_doc, job_table, job_type, renewable 
+	  	from bi_execute_job where job_table like concat('%', #{tableName},'%')
+	</select>
+  
+  
+</mapper>

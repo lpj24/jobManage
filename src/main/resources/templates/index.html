@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"></link>
+    <script th:src="@{/bootstrap/js/jquery.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/dayJob.js}"></script>
+   
+</head>
+<body>
+    <div class="container" style="margin-top:40px; padding-bottom:20px;">
+    	<div class="row">
+    		<div class="col-md-3 col-md-offset-5">
+    			<form class="form-inline" th:action="@{/v1/fuzzy}" method="GET">
+					  <div class="form-group">
+					    <input type="text" class="form-control" name="fuzzyKey" placeholder="输入表名"/>
+					  </div>
+					  <button type="submit" class="btn btn-default">搜索</button>
+				 </form>
+    		</div>
+    	</div>
+    	
+    </div>
+    
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<table class="table table-hover" id="allJobTable">
+    				<tr>
+    					<th>任务名称</th>
+    					<th>任务路径</th>
+    					<th>任务描述</th>
+    					<th>任务操作表</th>
+    					<th>更新天数</th>
+    					<th>操作</th>
+    				</tr>
+    				<tr th:each="jobList: ${jobList}">
+						<td th:text="${jobList.jobName}"></td>
+						<td th:text="${jobList.jobPath}"></td>
+						<td th:text="${jobList.jobDoc}"></td>
+						<td th:text="${jobList.jobTable}"></td>
+						<td th:text="${jobList.jobType}" style="display:none;"></td>
+						<td th:text="${jobList.renewable}" style="display:none;" class="updateable"></td>
+						<td>
+							<select class="selectpicker executeDay">
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							  <option>6</option>
+							  <option>7</option>
+							</select>
+						</td>
+						<td>
+							<button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-primary btn-xs updateJob"></button>
+						</td>
+    				</tr>
+    			</table>
+    		</div>
+    	</div>
+    </div>
+</body>
+</html>
