@@ -34,7 +34,7 @@ $(function() {
         btn.text("更新中……");
 		$.ajax({
 			method: 'post',
-			url: '/v1/dayJob',
+			url: '/hbgj/v1/dayJob',
 			dataType:"json",
 			data: {
 				"tableName": jobTable, 

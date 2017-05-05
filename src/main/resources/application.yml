@@ -1,6 +1,6 @@
 server:
   port: 9999
-
+  context-path: /hbgj/
 
 # java -jar target/jobManage-0.0.1-SNAPSHOT.jar --spring.profiles.active=debug
 # 正式环境中linux和windows设置SPRING_PROFILES_ACTIVE环境变量
