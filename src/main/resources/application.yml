@@ -1,28 +1,45 @@
 server:
   port: 9999
 
-logging:
-  path: /home/huolibi/local/hbgj_statistics/log
-  file: tomcat.log
-#禁用模板缓存(debug)
-spring:
-  thymeleaf:
-    cache: false
-    suffix: .html
-    mode: HTML5
-    
-  datasource:
-    url: jdbc:mysql://120.133.0.162:3306/bi
-    username: bi
-    password: bIbi_0820
-    
-#  datasource:
-#    url: jdbc:mysql://192.168.76.23:3306/statistics
-#    username: lpj
-#    password: 123456
 
+# java -jar target/jobManage-0.0.1-SNAPSHOT.jar --spring.profiles.active=debug
+# 正式环境中linux和windows设置SPRING_PROFILES_ACTIVE环境变量
+
+#logging:
+#  path: /home/huolibi/local/hbgj_statistics/log
+#  file: tomcat.log
+#禁用模板缓存(debug)
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   config-location: classpath:mybatis.xml
   type-aliases-package: com.hbgj.bi.model
+ 
+spring:  
+  thymeleaf:
+    cache: true
+    suffix: .html
+    mode: HTML5
+  profiles:  
+    active: debug 
+
+---
+spring:
+  profiles: production
+    
+  datasource:
+    url: jdbc:mysql://120.133.0.162:3306/bi
+    username: bi
+    password: bIbi_0820
+
+---
+spring:
+  thymeleaf:
+    cache: false
+  profiles: debug
+  datasource:
+    url: jdbc:mysql://192.168.76.23:3306/statistics
+    username: lpj
+    password: 123456
+
+

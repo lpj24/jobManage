@@ -33,7 +33,7 @@ $(function() {
         btn.attr("disabled", true);
         btn.text("更新中……");
 		$.ajax({
-			method: 'PATCH',
+			method: 'post',
 			url: '/v1/dayJob',
 			dataType:"json",
 			data: {

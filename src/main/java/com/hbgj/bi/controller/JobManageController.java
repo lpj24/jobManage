@@ -1,9 +1,6 @@
 package com.hbgj.bi.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +32,7 @@ public class JobManageController {
 		return "index";
 	}
 	
-	@RequestMapping(value= "/dayJob", method=RequestMethod.PATCH)
+	@RequestMapping(value= "/dayJob", method=RequestMethod.POST)
 	@ResponseBody
 	public String executeDayJob(HttpServletRequest httpRequest) throws JsonProcessingException {
 		Map<String, String> resultMap = new HashMap<String, String>(); 

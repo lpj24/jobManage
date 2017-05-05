@@ -6,7 +6,6 @@
 	<groupId>com.hbgj</groupId>
 	<artifactId>jobManage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
 	<name>jobManage</name>
 	<description>bi定时任务管理</description>
@@ -59,6 +58,11 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -85,4 +89,5 @@
 	</build>
 
 
+	<packaging>war</packaging>
 </project>
