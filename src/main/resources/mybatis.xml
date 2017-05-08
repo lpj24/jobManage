@@ -24,6 +24,8 @@
         <setting name="defaultExecutorType" value="SIMPLE" />
         <!--设置超时时间，它决定驱动等待一个数据库响应的时间。 系统默认值是null，设置只是为了展示出来 -->
         <setting name="defaultStatementTimeout" value="25000" />
+        
+        <setting name="logImpl" value="STDOUT_LOGGING" />  
     </settings>
 
 </configuration>
