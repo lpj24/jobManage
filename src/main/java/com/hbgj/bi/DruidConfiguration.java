@@ -24,7 +24,7 @@ public class DruidConfiguration {
         //创建servlet注册实体
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");
         //设置ip白名单
-        servletRegistrationBean.addInitParameter("allow","127.0.0.1");
+//        servletRegistrationBean.addInitParameter("allow","127.0.0.1");
         //设置ip黑名单，如果allow与deny共同存在时,deny优先于allow
 //        servletRegistrationBean.addInitParameter("deny","192.168.0.19");
         //设置控制台管理用户

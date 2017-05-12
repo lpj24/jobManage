@@ -42,19 +42,19 @@ public class JobManageController {
 		String executeDay = (String) httpRequest.getParameter("executeDay");
 		String jobType = httpRequest.getParameter("jobType");
 		try {
+			String os_name = System.getProperty("os.name");
+			String executeFile = "";
+			if(os_name.contains("Windows")) {
+				executeFile = "C:\\Users\\Administrator\\PycharmProjects"
+				+ "\\hbgj_statistics\\dbClient\\utils.py";
+			}else{
+				executeFile = "/home/huolibi/local/hbgj_statistics/dbClient/utils.py";
+			}
 
-			
-//			String executeFile = "C:\\Users\\Administrator\\PycharmProjects"
-//					+ "\\hbgj_statistics\\dbClient\\utils.py";
-//			
-			// linux 
-			String executeFile = "/home/huolibi/local/hbgj_statistics/dbClient/utils.py";
 			Process process = Runtime.getRuntime().exec("python " +executeFile +" -table " 
 					+ tableName + " -path " + jobPath + " -name " 
 					+ jobName + " -day " + executeDay + " -jobType " + jobType);
-			System.out.println("python " +executeFile +" -table " 
-					+ tableName + " -path " + jobPath + " -name " 
-					+ jobName + " -day " + executeDay + " -jobType " + jobType);
+
 			UtilHelper.clearInputAndErrorBuffer(process);
 			int executeResult = process.waitFor();
 			process.destroy();
