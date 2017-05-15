@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,5 +77,19 @@ public class UtilHelper {
 		              }  
 		           }   
 		         }.start(); 
+    }
+    
+    
+    /**
+     * 
+     * @param days 指定天数 前一天 -1, 后一天 1
+     * @param format_str  "yyyy-MM-dd HH:mm:ss"
+     * @return 
+     */
+    public static String getDateStr(int days, String format_str) {
+	   Date date=new Date();
+	   DateFormat format=new SimpleDateFormat(format_str);
+	   String returnTime= format.format(date.getTime() + days * 24*60*60*1000);
+	   return returnTime;
     }
 }

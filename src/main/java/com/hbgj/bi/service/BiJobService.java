@@ -20,4 +20,14 @@ public class BiJobService {
 	public List<BiJob> selectAllJobByTable(String tableName) {
 		return biJobMapper.selectAllJobByTable(tableName);
 	}
+	
+	public List selectErrorUpdateLast(String sDay) {
+		List<String> errorJobTable = biJobMapper.selectErrorJobTable(sDay);
+		if(!errorJobTable.isEmpty()) {
+			return biJobMapper.selectErrorUpdateLast(errorJobTable);
+		}else{
+			return errorJobTable;
+		}
+		
+	}
 }

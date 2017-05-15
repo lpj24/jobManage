@@ -22,6 +22,17 @@
 	  	select id, job_name, job_path, job_doc, job_table, job_type, renewable 
 	  	from bi_execute_job where job_table like concat('%', #{tableName},'%')
 	</select>
-  
+  	
+  	<select id="selectErrorJobTable" parameterType="string" resultType="string">
+		select job_table from error_update_table_daily where s_day=#{sDay}
+	</select>
+  	
+  	<select id="selectErrorUpdateLast" resultMap="biJobDto">
+	  	select id, job_name, job_path, job_doc, job_table, job_type, renewable 
+	  	from bi_execute_job  where
+	  	<foreach collection="list" item="item" separator="or">
+	  	  job_table like concat('%', #{item},'%') 
+	  	</foreach>
+	</select>
   
 </mapper>

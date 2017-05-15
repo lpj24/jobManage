@@ -86,4 +86,15 @@ public class JobManageController {
 		map.put("jobList", jobList);
 		return "index";
 	}
+	
+	/*
+	 *  获取昨日未更新记录
+	 */
+	@RequestMapping(value= "/last_updateJob", method=RequestMethod.GET)
+	public String queryLastUpdate(HttpServletRequest httpRequest, Map<String, List> map) {
+		String s_day = UtilHelper.getDateStr(-1, "yyyy-MM-dd");
+		List errorJobList = biJobService.selectErrorUpdateLast(s_day);
+		map.put("jobList", errorJobList);
+		return "index";
+	}
 }
