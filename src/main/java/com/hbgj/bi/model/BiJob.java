@@ -1,8 +1,9 @@
 package com.hbgj.bi.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class BiJob {
+public class BiJob implements Serializable{
     private Integer id;
 
     private String jobName;

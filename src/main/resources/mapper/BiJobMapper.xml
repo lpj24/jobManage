@@ -40,5 +40,5 @@
 	  	  job_table like concat('%', #{item},'%') 
 	  	</foreach>
 	</select>
-  
+  	
 </mapper>
