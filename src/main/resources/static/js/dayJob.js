@@ -4,7 +4,11 @@ $(function() {
 
 	if($("#updateAllRecordNum").text() <= 0) {
 		$("#updateAllRecord").attr("disabled", "disabled");
+	}else{
+		$("#updateAllRecord").attr("disabled", false);
 	}
+	
+	$("#batchNum").text(JSON.parse(window.localStorage.getItem("batchList")).length);
 	
 	$(".executeDay").change(function() {
 		var jobDays = $(this).val();
@@ -56,15 +60,6 @@ $(function() {
 		})
 	});
 	
-	//昨日未更新记录
-	$("#last_update").on("click", function() {
-		$("#updateAllRecordNum").text($("#lastNum").text())
-		if($("#updateAllRecordNum").text() >= 1) {
-			$("#updateAllRecord").attr("disabled", false);
-		}
-		
-	})
-	
 	//批量更新记录
 	var batchList = new Array()
 	$(".batchUpdate").on("click", function() {
@@ -86,26 +81,26 @@ $(function() {
         		jobDay: jobDay
         }
         batchList.push(batchObj);
-        
+        window.localStorage.setItem("batchList", JSON.stringify(batchList));
         $("#batchNum").text(batchList.length);
 	});
 	
 	$("#batchQuery").on("click", function() {
 //		$("#allJobTable tr:not(:first)").html("");
 		var i = 0
-		
+		var newBatchList = JSON.parse(window.localStorage.getItem("batchList"));
 		$(".table-hover tr:eq(" + 0 + ")" + " th:eq(4)" ).text("");
 		$(".table-hover tr:eq(" + 0 + ")" + " th:eq(5)").text("");
 		$(".table-hover tr:eq(" + 0 + ")" + " th:eq(6)").text("");
-		for(i; i< batchList.length; i++) {
+		for(i; i< newBatchList.length; i++) {
 			var j = i + 1;
 			
-			$(".table-hover tr:eq(" + j + ")" + " td:eq(0)" ).text(batchList[i].jobName);
-			$(".table-hover tr:eq(" + j + ")" + " td:eq(1)" ).text(batchList[i].jobPath);
-			$(".table-hover tr:eq(" + j + ")" + " td:eq(2)" ).text(batchList[i].jobDoc);
-			$(".table-hover tr:eq(" + j + ")" + " td:eq(3)" ).text(batchList[i].jobTable);
-			$(".table-hover tr:eq(" + j + ")" + " td:eq(4)" ).text(batchList[i].jobType);
-			$(".table-hover tr:eq(" + j + ")" + " td:eq(5)" ).text(batchList[i].renewable);
+			$(".table-hover tr:eq(" + j + ")" + " td:eq(0)" ).text(newBatchList[i].jobName);
+			$(".table-hover tr:eq(" + j + ")" + " td:eq(1)" ).text(newBatchList[i].jobPath);
+			$(".table-hover tr:eq(" + j + ")" + " td:eq(2)" ).text(newBatchList[i].jobDoc);
+			$(".table-hover tr:eq(" + j + ")" + " td:eq(3)" ).text(newBatchList[i].jobTable);
+			$(".table-hover tr:eq(" + j + ")" + " td:eq(4)" ).text(newBatchList[i].jobType);
+			$(".table-hover tr:eq(" + j + ")" + " td:eq(5)" ).text(newBatchList[i].renewable);
 
 			
 			$(".table-hover tr:eq(" + j + ")" + " td:eq(6)" ).text("");
@@ -158,6 +153,7 @@ $(function() {
 			},
 			complete: function() {
 				$("#updateAllRecord").button('reset');
+				window.localStorage.clear();
 			},
 			error: function() {
 				$("#updateAllRecord").button('reset');
