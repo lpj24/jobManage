@@ -224,7 +224,6 @@ $(function() {
         var jobTable = $(".table-hover tr:eq(" + this.rowIndex + ")" + " td:eq(3)" ).text();
         var jobDoc = $(".table-hover tr:eq(" + this.rowIndex + ")" + " td:eq(2)" ).text();
         var jobId = $(".table-hover tr:eq(" + this.rowIndex + ")" + " td:eq(6)" ).text();
-        alert(jobId);
 		$('#myModal').modal('show');
 		$('.modal-title').text("更新" + jobTable + "表(" + jobDoc + ")" + "以下时间段所有的数据");
 		$('#moreJobId').val(jobId);
