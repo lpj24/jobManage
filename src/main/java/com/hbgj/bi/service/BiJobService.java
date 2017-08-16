@@ -30,4 +30,8 @@ public class BiJobService {
 		}
 		
 	}
+	
+	public BiJob selectJobInfoById(String jobId) {
+		return biJobMapper.selectJobInfoById(jobId);
+	}
 }

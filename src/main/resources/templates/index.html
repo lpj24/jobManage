@@ -5,8 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"></link>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datetimepicker.min.css}"></link>
+
+
     <script th:src="@{/bootstrap/js/jquery.min.js}"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap-datetimepicker.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap-datetimepicker.zh-CN.js}" ></script>
+    <script th:src="@{/bootstrap/js/moment.min.js}"></script>
     <script th:src="@{/js/dayJob.js}"></script>
    
 </head>
@@ -75,6 +81,7 @@
 						<td th:text="${jobList.jobTable}"></td>
 						<td th:text="${jobList.jobType}" style="display:none;"></td>
 						<td th:text="${jobList.renewable}" style="display:none;" class="updateable"></td>
+						<td th:text="${jobList.id}" style="display:none;"></td>
 						<td>
 							<select class="selectpicker executeDay">
 							  <option>1</option>
@@ -94,6 +101,49 @@
     			</table>
     		</div>
     	</div>
+    	
+    	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel"></h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="container-fluid">
+	      		<div class="row">
+                    <div class="col-md-4">
+                            <div class="input-group date queryDate" readonly="readonly" id="queryStart">
+                                <input class="form-control" type="text" id="startDate_val"/>
+                                <span class="input-group-addon" >
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                    </div>
+
+                    <div class="col-md-4">
+                            <div class="input-group date queryDate" readonly="readonly" id="queryEnd">
+                                <input class="form-control" type="text" id='endDate_val'/>
+                                <span class="input-group-addon" >
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                    </div>
+	      		</div>
+	      	</div>
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <input type="text" style="display:none;" id="moreJobId"/>
+	        <button type="button" id="joinMoreTimeJob" class="btn btn-primary">加入任务队列</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+    	
+    	
     </div>
 </body>
 </html>

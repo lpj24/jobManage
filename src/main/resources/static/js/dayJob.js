@@ -1,4 +1,5 @@
 $(function() {
+
 	
 	var utils = {
 		getSession: function(key) {
@@ -204,7 +205,7 @@ $(function() {
 			},
 			complete: function() {
 				$("#updateAllRecord").button('reset');
-				utils.clearSession();
+//				utils.clearSession();
 			},
 			error: function() {
 				$("#updateAllRecord").button('reset');
@@ -213,6 +214,56 @@ $(function() {
 	})
 	
 	
+	//双击记录条更新某个时间段的所有数据, 如更新2017-08-01至2017-08-10之间所有的数据
+	$("tr:gt(0)").hover(function() {
+		$(this).attr("style", "cursor:pointer");
+	});
+	
+	
+	$("tr:gt(0)").dblclick(function() {
+        var jobTable = $(".table-hover tr:eq(" + this.rowIndex + ")" + " td:eq(3)" ).text();
+        var jobDoc = $(".table-hover tr:eq(" + this.rowIndex + ")" + " td:eq(2)" ).text();
+        var jobId = $(".table-hover tr:eq(" + this.rowIndex + ")" + " td:eq(6)" ).text();
+        alert(jobId);
+		$('#myModal').modal('show');
+		$('.modal-title').text("更新" + jobTable + "表(" + jobDoc + ")" + "以下时间段所有的数据");
+		$('#moreJobId').val(jobId);
+	})
+	
+	
+		
+    $('.queryDate').datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView: "month",
+        language: 'zh-CN',
+        autoclose: 1,
+        todayBtn: true,
+        pickerPosition: 'bottom-left'
+    });
+
+
+    var today = moment().format('YYYY-MM-DD');
+    var lastDate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+    $('.queryDate').datetimepicker('setEndDate', today);
+
+    $("#startDate_val").val(lastDate);
+    $("#endDate_val").val(today);
+    
+    // 将要更新时间段的任务
+    $("#joinMoreTimeJob").click(function() {
+    	$.ajax({
+			method: 'post',
+			url: '/hbgj/v1/addMoreTimeJob',
+			dataType:"json",
+			data: {
+				"jobId": $('#moreJobId').val(), 
+				"startDate": $("#startDate_val").val(),
+				"endDate": $("#endDate_val").val()
+			}
+		});
+    	
+    	$('#myModal').modal('toggle');
+    })
 })
 
 

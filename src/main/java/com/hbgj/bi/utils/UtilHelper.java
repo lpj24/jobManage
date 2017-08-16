@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -91,5 +92,25 @@ public class UtilHelper {
 	   DateFormat format=new SimpleDateFormat(format_str);
 	   String returnTime= format.format(date.getTime() + days * 24*60*60*1000);
 	   return returnTime;
+    }
+    
+    public static Integer countDiffDay(String startDate, String endDate) {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    	Calendar cal = Calendar.getInstance(); 
+    	long fTime = 0;
+    	long oTime = 0;
+        try {
+			cal.setTime(sdf.parse(startDate));
+	        fTime = cal.getTimeInMillis();
+	        
+	        cal.setTime(sdf.parse(endDate));    
+	        oTime = cal.getTimeInMillis();  
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+
+        long between_days=(oTime-fTime)/(1000*3600*24); 
+    	return Integer.parseInt(String.valueOf(between_days));
     }
 }
