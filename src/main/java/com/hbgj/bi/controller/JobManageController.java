@@ -132,9 +132,8 @@ public class JobManageController {
 		updateRecord.put("jobType", String.valueOf(bj.getJobType()));
 		
 		String executeFile = getExecuteFile();
-		ArrayList<Thread> threadList = new ArrayList<Thread>();
 		for(int i=1; i <= betweenDays; i++) {
-			int re = executePy(bj.getJobTable(), bj.getJobPath(), bj.getJobName(), String.valueOf(i), bj.getJobTable(), executeFile);
+			int re = executePy(bj.getJobTable(), bj.getJobPath(), bj.getJobName(), String.valueOf(i), String.valueOf(bj.getJobType()), executeFile);
 			
 		}
 		

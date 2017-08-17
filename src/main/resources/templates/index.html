@@ -13,7 +13,8 @@
     <script th:src="@{/bootstrap/js/bootstrap-datetimepicker.js}"></script>
     <script th:src="@{/bootstrap/js/bootstrap-datetimepicker.zh-CN.js}" ></script>
     <script th:src="@{/bootstrap/js/moment.min.js}"></script>
-    <script th:src="@{/js/dayJob.js}"></script>
+    <script th:src="@{/js/init_event.js}"></script>
+    <script th:src="@{/js/init_ele.js}"></script>
    
 </head>
 <body>
@@ -22,7 +23,7 @@
     		<div class="col-md-4 col-md-offset-5">
     			<form class="form-inline" th:action="@{/v1/fuzzy}" method="GET">
 					  <div class="form-group">
-					    <input type="text" class="form-control" name="fuzzyKey" placeholder="输入表名"/>
+					    <input type="text" class="form-control" name="fuzzyKey" placeholder="输入表名或者任务关键字"/>
 					  </div>
 					  <button type="submit" class="btn btn-default">搜索</button>
 				 </form>
@@ -81,7 +82,6 @@
 						<td th:text="${jobList.jobTable}"></td>
 						<td th:text="${jobList.jobType}" style="display:none;"></td>
 						<td th:text="${jobList.renewable}" style="display:none;" class="updateable"></td>
-						<td th:text="${jobList.id}" style="display:none;"></td>
 						<td>
 							<select class="selectpicker executeDay">
 							  <option>1</option>
@@ -97,6 +97,7 @@
 							<button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-primary btn-xs updateJob"></button>
 						</td>
 						<td><button class="btn btn-default btn-xs batchUpdate"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
+						<td th:text="${jobList.id}" style="display:none;"></td>
     				</tr>
     			</table>
     		</div>
