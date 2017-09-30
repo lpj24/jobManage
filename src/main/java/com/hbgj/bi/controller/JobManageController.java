@@ -96,7 +96,7 @@ public class JobManageController {
 	@RequestMapping(value= "/fuzzy", method=RequestMethod.GET)
 	public String queryJobByTable(HttpServletRequest httpRequest, Model model) {
 		String tableName = (String) httpRequest.getParameter("fuzzyKey");
-		List<BiJob> jobList = biJobService.selectAllJobByTable(tableName);
+		List<BiJob> jobList = biJobService.selectAllJobByTable(tableName.trim());
 		model.addAttribute("jobList", jobList);
 		return "index";
 	}

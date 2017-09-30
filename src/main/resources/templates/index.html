@@ -67,13 +67,13 @@
     		<div class="col-md-12">
     			<table class="table table-hover" id="allJobTable">
     				<tr class="success">
-    					<th>任务名称</th>
-    					<th>任务路径</th>
-    					<th>任务描述</th>
-    					<th>任务操作表</th>
-    					<th>更新天数</th>
+    					<th>名称</th>
+    					<th>路径</th>
+    					<th>描述</th>
+    					<th>操作表</th>
+    					<th>天数</th>
     					<th>操作</th>
-    					<th>添加批量更新记录</th>
+    					<th>添加</th>
     				</tr>
     				<tr th:each="jobList: ${jobList}">
 						<td th:text="${jobList.jobName}"></td>
